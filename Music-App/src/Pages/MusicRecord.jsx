@@ -1,13 +1,13 @@
 import React from "react";
 import styled from "styled-components"
-import { FilterMUsicRecords } from "../Components/FilterMusicRecords";
+import { FilterMusicRecords } from "../Components/FilterMusicRecords";
 import { MusicAlbum } from "../Components/MusicAlbum";
 
 export const MusicRecord = () => {
     return(
         <Wrapper>
         <WrapperFilterMusicRecords>
-            <FilterMUsicRecords/>
+            <FilterMusicRecords/>
         </WrapperFilterMusicRecords>
          <WrapperMusicAlbumRecords>
             <MusicAlbum/>

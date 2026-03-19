@@ -1,15 +1,24 @@
-import { legacy_createStore, compose, applyMiddleware } from "redux";
-import {thunk} from "redux-thunk";
+import {
+  applyMiddleware,
+  combineReducers,
+  compose,
+  legacy_createStore,
+} from "redux";
+import { thunk } from "redux-thunk";
 
-import { reducer as musicReducer } from "./Reducer";
+import { reducer as musicReducer } from "./App/Reducer";
+import { Reducer as authReducer } from "./Auth/Reducer";
+
+const rootTerminal = combineReducers({
+  auth: authReducer,
+  app: musicReducer,
+});
 
 const composeEnhancers =
   typeof window === "object" && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
-    ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
-        // Specify extension’s options like name, actionsBlacklist, actionsCreators, serialize...
-      })
+    ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({})
     : compose;
 
 const enhancer = composeEnhancers(applyMiddleware(thunk));
 
-export const myStore = legacy_createStore(musicReducer, enhancer);
+export const myStore = legacy_createStore(rootTerminal, enhancer);
